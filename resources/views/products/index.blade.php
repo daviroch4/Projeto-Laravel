@@ -12,7 +12,7 @@ rounded-lg shadow mx-auto">
 
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Produtos</h1>
         <a href="{{ url('products/new') }}" class="bg-blue-600 text-white px-4 py-2
-       rounded hover:bg-blue-700">Cadastrar</a>
+       rounded hover:bg-blue-700">Cadastrar </a>
 
     </div>
     <table class="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600">
