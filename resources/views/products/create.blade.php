@@ -3,12 +3,10 @@
 @section('title', 'Cadastrar produto')
 
 @section('content')
-<form class="w-full bg-white dark:bg-gray-800 p-6 rounded-lg
-shadow" action="{{ url('products/new') }}" method="POST">
+<form class="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow" action="{{ url('products/new') }}" method="POST">
     @csrf
 
-    <h1 class="text-2xl font-bold mb-6 text-gray-900
-dark:text-white">Cadastrar Produto</h1>
+    <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Cadastrar Produto</h1>
 
     <x-meu-input name="name" label="Nome:" />
 
@@ -30,21 +28,25 @@ dark:text-white">Cadastrar Produto</h1>
     <p class="text-red-600 mb-4 text-sm">{{ $message }}</p>
     @enderror
 
-
+    <label class="block mb-1 text-gray-700 dark:text-gray-300">Tipo:</label>
     <select class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="type_id">
         <option value="">Selecione</option>
-
         @foreach($types as $type)
-        <option value="{{ $type->id }}">
-            {{ $type->name }}
-        </option>
+        <option value="{{ $type->id }}">{{ $type->name }}</option>
+        @endforeach
+    </select>
+
+    <label class="block mb-1 text-gray-700 dark:text-gray-300">Fornecedor:</label>
+    <select class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="supplier_id">
+        <option value="">Selecione (opcional)</option>
+        @foreach($suppliers as $supplier)
+        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
         @endforeach
     </select>
 
     <x-meu-button>
         Salvar
     </x-meu-button>
-
 
 </form>
 @endsection

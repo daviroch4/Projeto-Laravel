@@ -3,42 +3,37 @@
 @section('title', 'Atualizar produto')
 
 @section('content')
-<form class="w-full bg-white dark:bg-gray-800 p-6 rounded-lg
-shadow" action="{{ url('products/update') }}" method="POST">
-
+<form class="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow" action="{{ url('products/update') }}" method="POST">
     @csrf
-    <!-- campo oculto passando o ID como parâmetro no request -->
-    <input type="hidden" name="id" value="{{ $product['id'] }}">
+    <input type="hidden" name="id" value="{{ $product->id }}">
 
-    <h1 class="text-2xl font-bold mb-6 text-gray-900
-dark:text-white">Atualizar Produto</h1>
+    <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Atualizar Produto</h1>
 
     <label class="block mb-1 text-gray-700 dark:text-gray-300">Nome:</label>
-    <input class="w-full p-2 mb-4 
-    rounded border dark:bg-gray-700 dark:text-white" name="name" type="text" value="{{ $product['name'] }}" />
+    <input class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="name" type="text" value="{{ $product->name }}" />
 
     <label class="block mb-1 text-gray-700 dark:text-gray-300">Descrição:</label>
-    <input class="w-full p-2 mb-4 
-    rounded border dark:bg-gray-700 dark:text-white" name="description" type="textarea" value="{{ $product['description'] }}" />
+    <input class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="description" type="text" value="{{ $product->description }}" />
 
     <label class="block mb-1 text-gray-700 dark:text-gray-300">Quantidade:</label>
-    <input class="w-full p-2 mb-4 
-    rounded border dark:bg-gray-700 dark:text-white" name="quantity" type="number" value="{{ $product['quantity'] }}" />
+    <input class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="quantity" type="number" value="{{ $product->quantity }}" />
 
     <label class="block mb-1 text-gray-700 dark:text-gray-300">Preço:</label>
-    <input class="w-full p-2 mb-4 
-    rounded border dark:bg-gray-700 dark:text-white" name="price" type="number" value="{{ $product['price'] }}" />
+    <input class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="price" type="number" value="{{ $product->price }}" />
 
     <label class="block mb-1 text-gray-700 dark:text-gray-300">Tipo:</label>
     <select class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="type_id">
         <option value="">Selecione</option>
-
         @foreach($types as $type)
-        <option
-            {{ $product['type_id'] == $type->id ? "selected" : "" }}
-            value="{{ $type->id }}">
-            {{ $type->name }}
-        </option>
+        <option {{ $product->type_id == $type->id ? 'selected' : '' }} value="{{ $type->id }}">{{ $type->name }}</option>
+        @endforeach
+    </select>
+
+    <label class="block mb-1 text-gray-700 dark:text-gray-300">Fornecedor:</label>
+    <select class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" name="supplier_id">
+        <option value="">Selecione (opcional)</option>
+        @foreach($suppliers as $supplier)
+        <option {{ $product->supplier_id == $supplier->id ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }}</option>
         @endforeach
     </select>
 
